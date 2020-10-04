@@ -1,6 +1,7 @@
 import DefaultLayout from "@layouts/default";
 import { GetStaticProps } from "next";
 import { Post } from "src/@types";
+import { PostList } from "src/components";
 import { getAllPosts } from "../api/posts";
 
 interface HomeProps {
@@ -10,11 +11,7 @@ interface HomeProps {
 export default function Home({ posts }: HomeProps) {
   return (
     <DefaultLayout>
-      <ul>
-        {posts?.map((post) => (
-          <li>{post.title}</li>
-        ))}
-      </ul>
+      <PostList posts={posts} />
     </DefaultLayout>
   );
 }

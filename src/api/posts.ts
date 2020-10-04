@@ -1,6 +1,5 @@
 import fs from "fs/promises";
 import matter from "gray-matter";
-import { NextApiRequest, NextApiResponse } from "next";
 import { Post } from "src/@types";
 
 export async function getAllPosts(): Promise<Post[]> {
@@ -25,18 +24,14 @@ export async function getAllPosts(): Promise<Post[]> {
   return posts;
 }
 
-export async function getPost(req: NextApiRequest): Promise<Post | null> {
+export async function getPost(slug: string): Promise<Post | null> {
   try {
-    const {
-      query: { slug },
-    } = req;
-
     const postFie = await fs.readFile(`./_posts/${slug}.md`);
 
     const meta = matter(postFie);
 
     return {
-      slug: slug as string,
+      slug,
       title: meta.data.title,
       description: meta.data.description,
       tags: meta.data.tags,
