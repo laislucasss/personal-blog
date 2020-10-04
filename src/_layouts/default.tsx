@@ -8,9 +8,9 @@ export default function DefaultLayout({
   children?: ReactNode;
 }): ReactElement {
   return (
-    <main>
+    <main className="flex flex-col">
       <Header />
-      {children}
+      <div className="flex-1">{children}</div>
       <Footer />
     </main>
   );
