@@ -1,5 +1,4 @@
 import DefaultLayout from "@layouts/default";
-import Head from "next/head";
 import Link from "next/link";
 
 interface PostLayoutProps {
@@ -12,10 +11,7 @@ export default function PostLayout({
   content,
 }: React.PropsWithChildren<PostLayoutProps>) {
   return (
-    <DefaultLayout title={title} description={content}>
-      <Head>
-        <title>{title}</title>
-      </Head>
+    <DefaultLayout>
       <article>
         <h1>{title}</h1>
         <div dangerouslySetInnerHTML={{ __html: content }} />
