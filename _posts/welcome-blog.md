@@ -1,6 +1,7 @@
 ---
-title: "Welcome to Next.js blog!"
-createdAt: "10/04/2020 - 12:26"
+date: 10-04-2020 13:12
+title: Welcome to Next.js blog!
+description: First blog post
 tags:
   - misc
 ---

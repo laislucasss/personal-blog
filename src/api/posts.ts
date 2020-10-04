@@ -4,18 +4,19 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { Post } from "src/@types";
 
 export async function getAllPosts(): Promise<Post[]> {
-  const postFileNames = await fs.readdir("./src/_posts");
+  const postFileNames = await fs.readdir("./_posts");
 
   const posts = await Promise.all(
     postFileNames.map(async (fileName) => {
-      const file = await fs.readFile(`./src/_posts/${fileName}`);
+      const file = await fs.readFile(`./_posts/${fileName}`);
       const meta = matter(file);
 
       return {
         slug: fileName.replace(/\.md$/, ""),
         title: meta.data.title,
+        description: meta.data.description,
         tags: meta.data.tags,
-        createdAt: meta.data.createdAt,
+        date: meta.data.date,
         content: meta.content,
       };
     })
@@ -24,27 +25,25 @@ export async function getAllPosts(): Promise<Post[]> {
   return posts;
 }
 
-export async function getPost(req: NextApiRequest, res: NextApiResponse) {
+export async function getPost(req: NextApiRequest): Promise<Post | null> {
   try {
     const {
       query: { slug },
     } = req;
 
-    const postFie = await fs.readFile(`./src/_posts/${slug}.md`);
+    const postFie = await fs.readFile(`./_posts/${slug}.md`);
 
     const meta = matter(postFie);
 
-    const post = {
-      slug,
-      ...meta.data,
+    return {
+      slug: slug as string,
+      title: meta.data.title,
+      description: meta.data.description,
+      tags: meta.data.tags,
+      date: meta.data.date,
       content: meta.content,
     };
-
-    return res.send(post);
   } catch (e) {
-    console.error(e);
-    return res
-      .status(404)
-      .send({ message: "Post not found - invalid post slug." });
+    return null;
   }
 }
