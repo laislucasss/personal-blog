@@ -7,7 +7,7 @@ interface PostListProps {
 
 export default function PostList({ posts }: PostListProps) {
   return (
-    <div className="mt-3">
+    <div className="mt-3 flex flex-col gap-2">
       {posts.map((post) => (
         <PostItem
           date={post.date}

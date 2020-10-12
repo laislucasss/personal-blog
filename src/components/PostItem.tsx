@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useState } from "react";
 import { Post } from "src/@types";
 
 function TagItem({ tag }: { tag: string }) {
@@ -24,14 +25,22 @@ export default function PostItem({
   title,
   tags,
 }: Omit<Post, "content">) {
+  const [hover, hoverSet] = useState(false);
+
   return (
     <Link href={`/posts/${slug}`}>
-      <div className="hover:bg-gray-100 cursor-pointer px-4 py-3">
-        <span>{title}</span>
+      <div
+        className="cursor-pointer px-4 py-3 hover:shadow-sm"
+        onMouseOver={() => hoverSet(true)}
+        onMouseOut={() => hoverSet(false)}
+      >
+        <span className={`font-bold ${hover && "text-red-primary"}`}>
+          {title}
+        </span>
         <div className="flex mb-2">
-          <small className="text-sm">{date}</small>
+          <small className="text-sm text-gray-500">{date}</small>
         </div>
-        <span className="text-gray-600">{description}</span>
+        <span className="text-purple">{description}</span>
         <TagList tags={tags} />
       </div>
     </Link>
