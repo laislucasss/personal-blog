@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useState } from "react";
 import { Post } from "src/@types";
+import { useHover } from "src/hooks";
 
 function TagItem({ tag }: { tag: string }) {
   return (
@@ -25,15 +25,11 @@ export default function PostItem({
   title,
   tags,
 }: Omit<Post, "content">) {
-  const [hover, hoverSet] = useState(false);
+  const [hoverRef, hover] = useHover();
 
   return (
     <Link href={`/posts/${slug}`}>
-      <div
-        className="cursor-pointer px-4 py-3 hover:shadow-sm"
-        onMouseOver={() => hoverSet(true)}
-        onMouseOut={() => hoverSet(false)}
-      >
+      <div className="cursor-pointer px-4 py-3 hover:shadow-sm" ref={hoverRef}>
         <span className={`font-bold ${hover && "text-red-primary"}`}>
           {title}
         </span>
