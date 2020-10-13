@@ -1,7 +1,7 @@
 ---
 date: 10-04-2020 13:12
 title: Welcome to Next.js blog!
-description: First blog post
+description: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, cum? Facere laudantium amet vel neque.
 tags:
   - misc
 ---

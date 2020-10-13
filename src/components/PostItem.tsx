@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Post } from "src/@types";
+import { useHover } from "src/hooks";
 
 function TagItem({ tag }: { tag: string }) {
   return (
@@ -24,14 +25,18 @@ export default function PostItem({
   title,
   tags,
 }: Omit<Post, "content">) {
+  const [hoverRef, hover] = useHover();
+
   return (
     <Link href={`/posts/${slug}`}>
-      <div className="hover:bg-gray-100 cursor-pointer px-4 py-3">
-        <span>{title}</span>
+      <div className="cursor-pointer px-4 py-3 hover:shadow-sm" ref={hoverRef}>
+        <span className={`font-bold ${hover && "text-red-primary"}`}>
+          {title}
+        </span>
         <div className="flex mb-2">
-          <small className="text-sm">{date}</small>
+          <small className="text-sm text-gray-500">{date}</small>
         </div>
-        <span className="text-gray-600">{description}</span>
+        <span>{description}</span>
         <TagList tags={tags} />
       </div>
     </Link>
