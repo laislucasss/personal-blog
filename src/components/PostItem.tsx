@@ -36,7 +36,7 @@ export default function PostItem({
         <div className="flex mb-2">
           <small className="text-sm text-gray-500">{date}</small>
         </div>
-        <span className="text-purple">{description}</span>
+        <span>{description}</span>
         <TagList tags={tags} />
       </div>
     </Link>
