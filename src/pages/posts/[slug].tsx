@@ -8,7 +8,9 @@ interface PostProps {
 }
 
 export default function PostPage({ post }: PostProps) {
-  return <PostLayout content={post.content} title={post.title}></PostLayout>;
+  return (
+    <PostLayout content={post.content} title={post.title} date={post.date} />
+  );
 }
 
 export const getStaticProps: GetStaticProps<PostProps> = async (context) => {
