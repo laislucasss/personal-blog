@@ -10,6 +10,7 @@ export default function PostList({ posts }: PostListProps) {
     <div className="mt-3 flex flex-col gap-2">
       {posts.map((post) => (
         <PostItem
+          key={post.slug}
           date={post.date}
           description={post.description}
           slug={post.slug}

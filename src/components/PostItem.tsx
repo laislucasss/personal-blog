@@ -11,8 +11,8 @@ function TagItem({ tag }: { tag: string }) {
 function TagList({ tags }: Pick<Post, "tags">) {
   return (
     <div className="flex my-2">
-      {tags.map((tag) => (
-        <TagItem tag={tag} />
+      {tags.map((tag, index) => (
+        <TagItem tag={tag} key={index} />
       ))}
     </div>
   );
@@ -29,13 +29,12 @@ export default function PostItem({
 
   return (
     <Link href={`/posts/${slug}`}>
-      <div className="cursor-pointer px-4 py-3 hover:shadow-sm" ref={hoverRef}>
-        <span className={`font-bold ${hover && "text-red-primary"}`}>
-          {title}
-        </span>
-        <div className="flex mb-2">
-          <small className="text-sm text-gray-500">{date}</small>
-        </div>
+      <div
+        className="flex flex-col cursor-pointer px-4 py-3 hover:shadow-sm"
+        ref={hoverRef}
+      >
+        <span className="font-bold text-red-primary text-xl">{title}</span>
+        <small className="text-sm text-gray-500 mb-2">{date}</small>
         <span>{description}</span>
         <TagList tags={tags} />
       </div>
