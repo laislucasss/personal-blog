@@ -12,6 +12,7 @@ module.exports = {
         "blue-primary": "#0300AD",
         "red-primary": "#E70503",
         "gray-primary": "#EAEFE9",
+        "pink-primary": "#FF69B4"
       },
     },
   },
